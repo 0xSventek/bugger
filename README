@@ -1,211 +1,103 @@
-== Welcome to Rails
+------------------------------------------------
+README_FOR_APP
 
-Rails is a web-application and persistence framework that includes everything
-needed to create database-backed web-applications according to the
-Model-View-Control pattern of separation. This pattern splits the view (also
-called the presentation) into "dumb" templates that are primarily responsible
-for inserting pre-built data in between HTML tags. The model contains the
-"smart" domain objects (such as Account, Product, Person, Post) that holds all
-the business logic and knows how to persist themselves to a database. The
-controller handles the incoming requests (such as Save New Account, Update
-Product, Show Post) by manipulating the model and directing data to the view.
+LAST MODIFIED:			4-9-2009
 
-In Rails, the model is handled by what's called an object-relational mapping
-layer entitled Active Record. This layer allows you to present the data from
-database rows as objects and embellish these data objects with business logic
-methods. You can read more about Active Record in
-link:files/vendor/rails/activerecord/README.html.
+CREATED BY:					Eric Heidelmark
+										hmark6@gmail.com
 
-The controller and view are handled by the Action Pack, which handles both
-layers by its two parts: Action View and Action Controller. These two layers
-are bundled in a single package due to their heavy interdependence. This is
-unlike the relationship between the Active Record and Action Pack that is much
-more separate. Each of these packages can be used independently outside of
-Rails.  You can read more about Action Pack in
-link:files/vendor/rails/actionpack/README.html.
+PLEASE DON'T:				Steal my stuff without letting me know. I have no recourse if you do, but I know you'll feel really really guilty about it and you don't want that, right?
+
+ACKNOWLEDGEMENTS:		Blueprint CSS framework (http://www.blueprintcss.org/)
+										Prototype JS framework (http://www.prototypejs.org/)
+										script.aculo.us JS framework (http://script.aculo.us)
+										Rails Recipes (http://www.pragprog.com/titles/fr_rr/)
+										Stock Names (http://stocknames.info/) for the silly names!
 
 
-== Getting started
+------------------------------------------------
+Getting MySQL and Rails
 
-1. At the command prompt, start a new rails application using the rails command
-   and your application name. Ex: rails myapp
-   (If you've downloaded rails in a complete tgz or zip, this step is already done)
-2. Change directory into myapp and start the web server: <tt>script/server</tt> (run with --help for options)
-3. Go to http://localhost:3000/ and get "Welcome aboard: You’re riding the Rails!"
-4. Follow the guidelines to start developing your application
+'$' indicates a command that should be run from a command line shell.
 
+If you don't have Ruby, Rails, RubyGems, and MySQL installed, use one of the following to set up your development environment:
 
-== Web Servers
+Windows : 'Instant Rails' http://instantrails.rubyforge.org/wiki/wiki.pl.
+Mac     : 'Locomotive' http://locomotive.raaum.org/
+Linux   : You can use your distribution's package manager to install the
+          programs you need. If you use Ubuntu Linux, the following link should
+          help: https://help.ubuntu.com/community/RubyOnRails
 
-By default, Rails will try to use Mongrel and lighttpd if they are installed, otherwise
-Rails will use the WEBrick, the webserver that ships with Ruby. When you run script/server,
-Rails will check if Mongrel exists, then lighttpd and finally fall back to WEBrick. This ensures
-that you can always get up and running quickly.
+If you'd rather install things manually, there are instructions here:
 
-Mongrel is a Ruby-based webserver with a C-component (which requires compilation) that is
-suitable for development and deployment of Rails applications. If you have Ruby Gems installed,
-getting up and running with mongrel is as easy as: <tt>gem install mongrel</tt>.
-More info at: http://mongrel.rubyforge.org
+  http://www.rubyonrails.com/down
+  
+  This application was built on Rails 1.2.6
 
-If Mongrel is not installed, Rails will look for lighttpd. It's considerably faster than
-Mongrel and WEBrick and also suited for production use, but requires additional
-installation and currently only works well on OS X/Unix (Windows users are encouraged
-to start with Mongrel). We recommend version 1.4.11 and higher. You can download it from
-http://www.lighttpd.net.
+You can get MySQL from:
 
-And finally, if neither Mongrel or lighttpd are installed, Rails will use the built-in Ruby
-web server, WEBrick. WEBrick is a small Ruby web server suitable for development, but not
-for production.
+  http://dev.mysql.com/downloads/mysql/5.0.html
 
-But of course its also possible to run Rails on any platform that supports FCGI.
-Apache, LiteSpeed, IIS are just a few. For more information on FCGI,
-please visit: http://wiki.rubyonrails.com/rails/pages/FastCGI
+Everyone needs to install rake with:
 
+  $ sudo gem install rake
+  
+  
+------------------------------------------------
+Getting Started
 
-== Debugging Rails
+'$' indicates a command that should be run from a command line shell.
 
-Sometimes your application goes wrong.  Fortunately there are a lot of tools that
-will help you debug it and get it back on the rails.
+In order to get the application up and running, you will need MySQL installed with the appropriate databases and permissions set up. I've written a rake task that should make this process painless:
 
-First area to check is the application log files.  Have "tail -f" commands running
-on the server.log and development.log. Rails will automatically display debugging
-and runtime information to these files. Debugging info will also be shown in the
-browser on requests from 127.0.0.1.
+  $ rake db:bootstrap
+  
+	* If rake fails it may be for one of the following reasons:
+	
+		- :bootstrap assumes it can log into mysql as root without a password. If your root account has a password, you may have to set up the databases manually. Take a look at /config/database.yml for the databases required.
+		- If the mysql socket is anything other than /tmp/mysql.sock, this will have to be set in /config/database.yml. For example, the default Debian/Ubuntu socket has been commented out. Uncomment if you're using one of these systems.
+		
+Next, you need to run the migrations to arrange the tables in the database. rake will take care of this.
 
-You can also log your own messages directly into the log file from your code using
-the Ruby logger class from inside your controllers. Example:
+	$ rake db:migrate
+	
+Finally, there is a bit of data that needs to exist in the tables for the system to operate properly. I've written a rake task for this as well.
 
-  class WeblogController < ActionController::Base
-    def destroy
-      @weblog = Weblog.find(params[:id])
-      @weblog.destroy
-      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
-    end
-  end
+	$ rake db:seed
+	
+	Assuming no errors, you now have the proper database setup for Bugger. If you'd like to start with some sample data to get you going run the command:
+	
+		$ rake db:sampledata
+		
+		* * WARNING * * 
+		This will erase all the data currently in the bugger table in MySQL and replace it with the sample data. This should only be run once before you begin to experiment with Bugger.
 
-The result will be a message in your log file along the lines of:
+Once your fixtures have been loaded you can now start up a server by typing:
 
-  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1
+  $ ruby script/server
+  
+  and navigating to http://localhost:3000 to get started with Bugger.
 
-More information on how to use the logger is at http://www.ruby-doc.org/core/
+If, at the conclusion of your experimenting with Bugger, you would like to remove all of the bugger database items, I've included a rake task for this.
+	
+	$ rake db:drop
+	
+	* * WARNING * *
+	This will drop the entire database, so only do this when you're sure you're done.  
+	
+	
+------------------------------------------------
+Notes about Bugger 
 
-Also, Ruby documentation can be found at http://www.ruby-lang.org/ including:
+Clearly there are holes in the app that I'd like to take care of. Little ones like, Password Change; Big ones like, Ticket Resolution. It's a work in progress. 
 
-* The Learning Ruby (Pickaxe) Book: http://www.ruby-doc.org/docs/ProgrammingRuby/
-* Learn to Program: http://pine.fm/LearnToProgram/  (a beginners guide)
+Take a look at /doc/pdf. There I've included Bugger in its infancy. A good design starts with a pencil and paper. The documents are:
+	
+	- data.pdf	=> The first draft of the database that would drive bugger. You can see from the migrations in /db/migrations that this changed a bit during development.
+	- flow.pdf	=> A sketch of the page flow that I envisioned for Bugger before writing a single line of code. It's surprisingly accurate for what was actually implemented. It also reveals features like a universal search which is yet to be implemented.
+	- requirements_#.pdf	=> This is a list of functional requirements that I compiled for Bugger. Not complete, but certainly enough to get me going. 
+	- features.pdf	=> This is list of features to add onto the basic requirements. If Bugger we released for sale to be purchased by Google and allow me to retire at 30, this is a list of things that would set Bugger apart from the crowded bug-tracking software packages. I can dream can't I?
 
-These two online (and free) books will bring you up to speed on the Ruby language
-and also on programming in general.
-
-
-== Breakpoints
-
-Breakpoint support is available through the script/breakpointer client. This
-means that you can break out of execution at any point in the code, investigate
-and change the model, AND then resume execution! Example:
-
-  class WeblogController < ActionController::Base
-    def index
-      @posts = Post.find(:all)
-      breakpoint "Breaking out from the list"
-    end
-  end
-
-So the controller will accept the action, run the first line, then present you
-with a IRB prompt in the breakpointer window. Here you can do things like:
-
-Executing breakpoint "Breaking out from the list" at .../webrick_server.rb:16 in 'breakpoint'
-
-  >> @posts.inspect
-  => "[#<Post:0x14a6be8 @attributes={\"title\"=>nil, \"body\"=>nil, \"id\"=>\"1\"}>,
-       #<Post:0x14a6620 @attributes={\"title\"=>\"Rails you know!\", \"body\"=>\"Only ten..\", \"id\"=>\"2\"}>]"
-  >> @posts.first.title = "hello from a breakpoint"
-  => "hello from a breakpoint"
-
-...and even better is that you can examine how your runtime objects actually work:
-
-  >> f = @posts.first
-  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
-  >> f.
-  Display all 152 possibilities? (y or n)
-
-Finally, when you're ready to resume execution, you press CTRL-D
+The Interface is all line-and-text at this point. Once I have all of the desired functionality operating properly I intend to polish the chrome. I've laid the ground work for this already with a generic 24-column grid based style sheet. (Acknowledgement to BluePrint CSS!)
 
 
-== Console
-
-You can interact with the domain model by starting the console through <tt>script/console</tt>.
-Here you'll have all parts of the application configured, just like it is when the
-application is running. You can inspect domain models, change values, and save to the
-database. Starting the script without arguments will launch it in the development environment.
-Passing an argument will specify a different environment, like <tt>script/console production</tt>.
-
-To reload your controllers and models after launching the console run <tt>reload!</tt>
-
-To reload your controllers and models after launching the console run <tt>reload!</tt>
-
-
-
-== Description of contents
-
-app
-  Holds all the code that's specific to this particular application.
-
-app/controllers
-  Holds controllers that should be named like weblogs_controller.rb for
-  automated URL mapping. All controllers should descend from ApplicationController
-  which itself descends from ActionController::Base.
-
-app/models
-  Holds models that should be named like post.rb.
-  Most models will descend from ActiveRecord::Base.
-
-app/views
-  Holds the template files for the view that should be named like
-  weblogs/index.rhtml for the WeblogsController#index action. All views use eRuby
-  syntax.
-
-app/views/layouts
-  Holds the template files for layouts to be used with views. This models the common
-  header/footer method of wrapping views. In your views, define a layout using the
-  <tt>layout :default</tt> and create a file named default.rhtml. Inside default.rhtml,
-  call <% yield %> to render the view using this layout.
-
-app/helpers
-  Holds view helpers that should be named like weblogs_helper.rb. These are generated
-  for you automatically when using script/generate for controllers. Helpers can be used to
-  wrap functionality for your views into methods.
-
-config
-  Configuration files for the Rails environment, the routing map, the database, and other dependencies.
-
-components
-  Self-contained mini-applications that can bundle together controllers, models, and views.
-
-db
-  Contains the database schema in schema.rb.  db/migrate contains all
-  the sequence of Migrations for your schema.
-
-doc
-  This directory is where your application documentation will be stored when generated
-  using <tt>rake doc:app</tt>
-
-lib
-  Application specific libraries. Basically, any kind of custom code that doesn't
-  belong under controllers, models, or helpers. This directory is in the load path.
-
-public
-  The directory available for the web server. Contains subdirectories for images, stylesheets,
-  and javascripts. Also contains the dispatchers and the default HTML files. This should be
-  set as the DOCUMENT_ROOT of your web server.
-
-script
-  Helper scripts for automation and generation.
-
-test
-  Unit and functional tests along with fixtures. When using the script/generate scripts, template
-  test files will be generated for you and placed in this directory.
-
-vendor
-  External libraries that the application depends on. Also includes the plugins subdirectory.
-  This directory is in the load path.
