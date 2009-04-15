@@ -1,0 +1,9 @@
+<div class="comment span-24">
+	<div class="span-7 prepend-1 author">
+		<p class="loud" style="font-weight:bold; margin-bottom:0;"><%= @ticket_comment.person.first_name %> <%= @ticket_comment.person.last_name %></p>
+		<p class="quiet"><%= @ticket_comment.date_posted.strftime("%B #{@ticket_comment.date_posted.day.ordinalize}, %Y") %></p>
+	</div>
+	<div class="span-16 last">
+		<p><%= @ticket_comment.comment %></p>
+	</div>
+</div>

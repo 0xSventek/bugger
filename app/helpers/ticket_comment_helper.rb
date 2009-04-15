@@ -1,0 +1,2 @@
+module TicketCommentHelper
+end

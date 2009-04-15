@@ -1,0 +1,38 @@
+# The hashed_password "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8" = "password"
+
+user_01:
+  username: "newtonf"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_02:
+  username: "antonios"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_03:
+  username: "kirkb"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_04:
+  username: "gilh"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_05:
+  username: "lemleatherm"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_06:
+  username: "keefel"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_07:
+  username: "alh"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_08:
+  username: "winsteadh"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_09:
+  username: "richp"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_10:
+  username: "bassa"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_11:
+  username: "wadeb"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"
+user_12:
+  username: "brettf"
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8"

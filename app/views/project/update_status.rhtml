@@ -1,0 +1,1 @@
+In <strong><%= @project.project_status.status %></strong> since <%= @project.status_date.strftime("%B #{@project.status_date.day.ordinalize}, %Y") %> <span id="update" class="" onclick="$('update-project-status').show(); this.className = 'active';">Update</span>

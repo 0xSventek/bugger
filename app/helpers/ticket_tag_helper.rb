@@ -1,0 +1,2 @@
+module TicketTagHelper
+end

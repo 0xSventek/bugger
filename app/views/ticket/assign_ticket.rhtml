@@ -1,0 +1,1 @@
+<span class="quiet">Assigned to</span> <span class="loud"><strong><%= "#{@ticket.person.first_name} #{@ticket.person.last_name}" %></strong></span> on <%= @ticket.date_assigned.strftime("%B #{@ticket.date_assigned.day.ordinalize}, %Y") %>  <span id="update" class="" onclick="$('update-assignment').show(); this.className = 'active';">Update</span>

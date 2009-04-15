@@ -1,0 +1,130 @@
+<div class="span-18" style="position:relative;">
+	<h1 style="margin-bottom:0;"><%= @project.name %></h1>
+	<p class="quiet" id="project-status">In <strong><%= @project.project_status.status %></strong> since <%= @project.status_date.strftime("%B #{@project.status_date.day.ordinalize}, %Y") %> <span id="update" class="" onclick="$('update-project-status').show(); this.className = 'active';">Update</span></p>
+	
+	<div id="update-project-status" style="display:none;">
+		<% remote_form_for :project, :success => "updateStatus(request.responseText);", :url => {:controller => "project", :action => "update_status"} do |uStatus| -%>
+			<%= uStatus.collection_select :project_status_id, ProjectStatus.find(:all), :id, :status %>
+			<%= uStatus.hidden_field :project_id, :value => params[:id] %>
+			<%= submit_tag "Update" %> or <span class="cancel" onclick="$('update-project-status').hide(); $('update').className = ''">Cancel</span>
+		<% end -%>
+	</div>
+</div>
+
+<div class="span-6 last" id="add-a-ticket">
+	<%= link_to "+ Add a Ticket" , :controller => 'ticket', :action => 'new', :id => @project.id %>
+</div>
+
+<hr />
+
+<div class="span-6 border">
+
+	<h2>Team Members</h2>
+		<div id="team-members">	
+			<% @project.team_members.each do |teammember| -%>
+			<div class="tm-container" id="tm-<%= "#{teammember.person.id}" %>" onmouseover="$('remove-<%= "#{teammember.person.id}" %>').show()" onmouseout="$('remove-<%= "#{teammember.person.id}" %>').hide()">
+				<div id="remove-<%= "#{teammember.person.id}" %>" class="trash" style="display:none;">
+					<%= link_to_remote "<img src='/images/trash.gif' alt='Trash' />", :url => {:controller => 'team_member', :action => 'destroy',  :id => teammember.id }, :success => "killTeamMember(#{teammember.person.id});"  %>
+				</div>
+				<p class="team-member-name"><%= "#{teammember.person.first_name.capitalize} #{teammember.person.last_name.capitalize}"%></p>
+				<p class="team-member-role"><%= teammember.role.capitalize %></p>
+			</div>
+			<% end -%>
+		</div>
+		
+		
+		
+	<div class="span-6" id="tm-form-box">
+		<p class="add-team-member" onclick="$('tm-form').show();">+ Add Team Member</p>
+		
+		<div class="span-6 last" id="tm-form" style="display:none;">
+		<% remote_form_for :team_member, :success => "addTeamMember(request.responseText);", :url => {:controller => "team_member", :action => "create"} do |tmform| -%>
+			
+			<label for="team_member_person_id">Person</label>
+			<%= tmform.collection_select :person_id, Person.find(:all, :select=> "id, concat(first_name, ' ', last_name) as name"), :id, :name %>
+			
+			<label for="team_member_role">Role</label>
+			<%= tmform.text_field :role, :class => 'span-5' %>
+			
+			<%= tmform.hidden_field :date_on,:value => Time.now.to_s(:db) %>
+			<%= tmform.hidden_field :project_id, :value => params[:id] %>
+			
+			<%= submit_tag "Add Person" %> or <span class="cancel" onclick="$('tm-form').hide();">Cancel</span>
+				
+		<% end -%>
+		</div>
+	</div>
+</div>
+
+<div class="span-18 last">
+	<p><%= @project.description.gsub(/\n/,'<br />') %></p>
+
+	<div class="span-18 last">
+	<h2>Bugs</h2>
+		<% if @bugs.length == 0 %>
+			<p class="quiet"><em>They ain'none.</em></p>
+		<% else %>
+			<% @bugs.each do |bug| %>
+				<div class="ticket span-17 priority-<%= bug.get_priority_string %>">
+					
+					<div class="span-4">
+						<p><span class="loud" style="font-weight:bold;"><%= link_to "Ticket #{bug.id}", :controller => 'ticket', :action => 'show', :id => bug.id %></span><br />
+						<% if bug.assigned_person_id.nil? %>Unassigned<% else %><%= "#{bug.person.first_name} #{bug.person.last_name}" %><% end %></p>
+					</div>		
+					
+					<div class="span-8">
+						<p><strong>Tags: </strong><% bug.ticket_tags.each do |tag| %><%= "#{tag.tag}, " %><% end %></p>
+					</div>
+					
+					<div class="span-3 prepend-1">
+						<p><strong><%= bug.get_priority_string.capitalize %></strong><br /><%= distance_of_time_in_words(Time.now, bug.date_submitted) %> old.</p>
+					</div>
+					
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+	
+	<div class="span-18 last">
+		<h2>Features</h2>
+		<% if @features.length == 0 %>
+			<p class="quiet"><em>They ain'none.</em></p>
+		<% else %>
+			<% @features.each do |feature| %>
+				<div class="ticket span-17 priority-<%= feature.get_priority_string %>">
+					
+					<div class="span-4">
+						<p><span class="loud" style="font-weight:bold;"><%= link_to "Ticket #{feature.id}", :controller => 'ticket', :action => 'show', :id => feature.id %></span><br />
+						<% if feature.assigned_person_id.nil? %>Unassigned<% else %><%= "#{feature.person.first_name} #{feature.person.last_name}" %><% end %></p>
+					</div>		
+					
+					<div class="span-8">
+						<p><strong>Tags: </strong><% feature.ticket_tags.each do |tag| %><%= "#{tag.tag}, " %><% end %></p>
+					</div>
+					
+					<div class="span-3 prepend-1 ">
+						<p><strong><%= feature.get_priority_string.capitalize %></strong><br /><%= distance_of_time_in_words(Time.now, feature.date_submitted) %> old.</p>
+					</div>
+					
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div> 
+
+
+<script type="text/javascript">
+	function addTeamMember(response){
+		$('team-members').innerHTML = $('team-members').innerHTML + response;
+		$('tm-form').hide();
+	}
+	
+	function updateStatus(response){
+		$('project-status').innerHTML = response;
+		$('update-project-status').hide();
+	}
+	 function killTeamMember(id){
+	 	elementId = 'tm-' + id;
+	 	$(elementId).hide();
+	 }
+</script>

@@ -1,0 +1,86 @@
+#login, #create-user{border:5px #ccc solid; background:#eee; padding-top:1.5em; padding-bottom:0.5em;}
+
+#create-user fieldset{border-right:0; border-left:0;}
+
+#logged-in{background:#eee; padding:0.5em 0; border-bottom:5px #ccc solid; margin-bottom: 1.5em;}
+#logged-in *{margin-bottom:0;}
+
+/* ------ Slider ------*/
+
+#slider{background:#fff url(/images/slider-track.png); height:48px;}
+#slider-track{width:373px; margin-left:27px; height:100%; }
+#slider-handle{width:13px; height:21px; background:#fff url(/images/slider-grip.png); cursor: move;}
+
+#slider-level{border:1px dotted; text-align:center; font-size:2.5em; font-weight:bold; text-transform: capitalize; letter-spacing:-1px;}
+
+.priority-annoyance{color:#428bcc !important; background:#ECF4FA;}
+.priority-minor{color:#40928c !important; background: #ECF4F4;}
+.priority-low{color:#3f9950 !important; background:#ECF5EE;}
+.priority-normal{color:#E4CE4A !important; background:#FCFAED;}
+.priority-high{color:#ff7332 !important; background:#FFF1EB;}
+.priority-major{color:#e54927 !important; background:#FCEDEA;}
+.priority-critical{color:#cc210c !important; background:#FAE9E7;}
+
+
+/* ------  ------*/
+#project-overview td p{margin-bottom:0;}
+
+.comment{padding-top:0.5em; border-bottom:1px dotted #C2D2EF;  }
+.comment .author{background: url(/images/comment.gif) left top no-repeat;}
+
+.add-comment{padding-top:0.5em; border-bottom:4px solid #C2D2EF;  }
+.add-comment .author{background: url(/images/comment_add.gif) left top no-repeat; color:#8EA6CF !important;}
+
+.add-comment .author .loud{color:#3E5C8F}
+.add-comment .author .quiet{color:#627EAF;}
+
+.tag {text-align:center; width:144px; border:3px solid #eee; background:#f8f8f8; color:#666; margin-bottom:10px;}
+.tag p{padding:0.5em 0; margin:0;}
+
+#tag_tag{font-size:1.5em; color:#aaa; position:relative;}
+#tag_tag:focus{color:#333;}
+
+#add-tag, #tm-form-box{position:relative;}
+.add-tag{border:3px solid #C6D880; background:#E6EFC2; color:#529214; font-weight:bold; cursor:pointer; } 
+#tag-form{opacity:0.95; position:absolute; border:3px solid #C6D880; border-top:0; background:#E6EFC2; width:400px; top:34px; left:0; padding:3.0em 2.0em;}
+#tag-form form{position:relative;}
+
+#tm-form{position:absolute; top:40px; border:3px solid #C6D880; border-top:0; background:#E6EFC2; width:212px; padding:0.5em;}
+#tm-form form select{width:175px;}
+#team_member_role{margin-bottom:1.0em;}
+
+.cancel{color:red; cursor:pointer;}
+.cancel:hover{text-decoration:underline;}
+
+
+#footer{margin-top:2.0em; border-top:1px dotted #ccc; padding:1.5em 0;}
+
+
+.nobody{background:#fbe3e4;
+    border:2px solid #fbc2c4;
+    color:#d12f19;
+    text-align:center;
+    }
+
+/* --------------- Tickets --------------- */
+.ticket{margin-bottom:0.5em; padding:0.5em 1.65em; border:1px dotted;}
+.ticket p {margin:0;}
+
+#add-a-ticket {}
+#add-a-ticket a{display:block; border:3px solid #ddd; background:#eee; text-align:center; font-weight:bold; letter-spacing:-1px; font-size:1.5em; padding:0.75em 0; text-decoration:none; color:#aaa;}
+#add-a-ticket a:hover{border:3px solid #C6D880; background:#E6EFC2; color:#529214;}
+
+.add-team-member{cursor:pointer; border:3px solid #ddd; background:#eee; text-align:center; font-weight:bold; padding:0.75em 0; text-decoration:none; color:#aaa;}
+.add-team-member:hover{border:3px solid #C6D880; background:#E6EFC2; color:#529214;}
+
+#update{border:1px solid #ccc; background:#f8f8f8; padding:0 0.5em; cursor:pointer;}
+#update:hover{border:1px solid #aaa; background:#eee; padding:0 0.5em;}
+
+#update-assignment{position:absolute; top:17px; left:0px; border:1px solid #aaa; background:#eee; padding:0.5em 1.5em;}
+#update-project-status{position:absolute; top:53px; left:0px; border:1px solid #aaa; background:#eee; padding:0.5em;}
+
+#team-members{border-top:1px dotted #ccc; margin-bottom:5px;}
+.tm-container {padding:0.75em; border-bottom:1px dotted #ccc;}
+.tm-container .trash{display:block; float:right; height:36px; cursor: pointer; padding-top:12px;}
+.tm-container p{margin:0;}
+.tm-container .team-member-name{font-weight:bold;}

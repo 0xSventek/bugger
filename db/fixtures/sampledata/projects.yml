@@ -1,0 +1,28 @@
+project_01:
+  id: "1111"
+  name: "Bug Killer"
+  description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti."
+  date_founded: "2008-02-29"
+  project_status_id: "2"
+  status_date: "2008-02-29"
+project_02:
+  id: "2222"
+  name: "Windows 7"
+  description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti."
+  date_founded: "2008-02-29"
+  project_status_id: "6"
+  status_date: "2008-02-29"
+project_03:
+  id: "3333"
+  name: "Super Duper CMS"
+  description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti."
+  date_founded: "2008-02-29"
+  project_status_id: "3"
+  status_date: "2008-02-29"
+project_04:
+  id: "4444"
+  name: "Super Mario Bros. 5"
+  description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti."
+  date_founded: "2004-02-29"
+  project_status_id: "5"
+  status_date: "2008-02-29"

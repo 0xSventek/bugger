@@ -1,0 +1,15 @@
+<% if @person %>
+	<div id="logged-in">
+		<div class="container no-print">
+			<div class="span-2">
+				<span class="" style="letter-spacing:1px; font-weight:bold;"><%= link_to "BUGGER", :controller => 'overview' %></span>
+			</div>
+			<div class="span-8 push-1 quiet">
+				You're logged in as <%= "#{@person.first_name} #{@person.last_name} " %>
+			</div>  
+			<div class="push-12 span-1 last quiet">
+				<%= link_to "Logout", :controller => 'user', :action => 'logout' %>
+			</div>
+		</div>
+	</div>
+<% end %>

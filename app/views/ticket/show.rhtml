@@ -1,0 +1,134 @@
+<div class="span-16">
+	<h1><%= link_to @project.name, :controller => 'project', :action => 'show', :id => @project.id %> :: Ticket <%= @ticket.id.to_s %></h1>
+</div>
+
+<div class="span-8 last">
+	<h1 class="priority-<%= @ticket.get_priority_string %>" style="border:1px dotted; text-align:center; padding:0.125em 0; margin:0; font-weight:bold; letter-spacing:-1px;"> <%= @ticket.get_priority_string.capitalize %></h1>
+</div>
+
+<div class="span-10 clear" style="position:relative;">
+	
+	<p id="assigned-to">
+		<% if @ticket.assigned_person_id.nil? %>
+			Unassigned <span id="update" class="" onclick="$('update-assignment').show(); this.className = 'active';">Update</span>
+		<% else %>
+			<span class="quiet">Assigned to</span> <span class="loud"><strong><%= "#{@ticket.person.first_name} #{@ticket.person.last_name}" %></strong></span> on <%= @ticket.date_assigned.strftime("%B #{@ticket.date_assigned.day.ordinalize}, %Y") %>  <span id="update" class="" onclick="$('update-assignment').show(); this.className = 'active';">Update</span>
+		<% end %>	
+	</p>
+	
+	<div id="update-assignment" style="display:none;">
+		<% remote_form_for :ticket, :success => "updateAssignment(request.responseText);", :url => {:controller => "ticket", :action => "assign_ticket"} do |assTicket| # ha! -%>
+			<%= assTicket.collection_select :id, Person.find(:all, :select=> "id, concat(first_name, ' ', last_name) as name"), :id, :name %>
+			<%= assTicket.hidden_field :ticket_id, :value => params[:id] %>
+			<%= submit_tag "Update" %> or <span class="cancel" onclick="$('update-assignment').hide(); $('update').className = ''">Cancel</span>
+		<% end -%>
+	</div>
+
+</div>
+
+<h2 class="clear" style="border-bottom:1px dotted #ccc;">Details</h2>
+
+<div class="span-24">
+	<div class="span-8">
+		<p class="loud" style="font-weight:bold;">Category</p>
+	</div>
+	<div class="span-16 last">
+		<p><%= @ticket.ticket_category.category %></p>
+	</div>
+</div>
+
+<div class="span-24">
+	<div class="span-8">
+		<p class="loud" style="font-weight:bold;">Date Submitted</p>
+	</div>
+	<div class="span-16 last">
+		<p><%= @ticket.date_submitted.strftime("%B #{@ticket.date_submitted.day.ordinalize}, %Y") %></p>
+	</div>
+</div>
+
+<div class="span-24">
+	<div class="span-8">
+		<p class="loud" style="font-weight:bold;">Description</p>
+	</div>
+	<div class="span-16 last">
+		<p><%= @ticket.description.gsub(/\n/,'<br />') %></p>
+	</div>
+</div>
+
+<h2 style="border-bottom:1px dotted #ccc;">Tags</h2>
+<div class="span-24" id="tags">
+<% @ticket.ticket_tags.each do |tag| %>
+	<div class="tag <%= cycle 'span-4','span-4','span-4','span-4','span-4','span-4 last'%>">
+		<p><%= tag.tag %></p>
+	</div>
+<% end %>
+</div>
+
+<div class="span-24" id="add-tag">
+	<div class="span-4 add-tag tag no-print" onclick="$('tag-form').show();">
+		<p>+ Add a tag</p>
+	</div>
+	
+	<div class="span-8" id="tag-form" style="display:none;">
+	<% remote_form_for :ticket_tag, :success => "addTag(request.responseText);", :url => {:controller => "ticket_tag", :action => "create"} do |tagform| -%>
+		
+		<%= tagform.text_field :tag, :class => 'span-6', :value => 'New Tag', :onfocus => "this.value = '';" %>
+		<%= tagform.hidden_field :ticket_id,:value => params[:id] %>
+		<%= submit_tag "Create Tag" %> or <span class="cancel" onclick="$('tag-form').hide();">Cancel</span>
+			
+	<% end -%>
+	</div>
+</div>
+
+<div id="comments">
+	<h2 style="border-bottom:1px dotted #ccc;">Discussion</h2>	
+	<% @ticket.ticket_comments.each do |comment| %>
+		<div class="comment span-24">
+			<div class="span-7 prepend-1 author">
+				<p class="loud" style="font-weight:bold; margin-bottom:0;"><%= comment.person.first_name %> <%= comment.person.last_name %></p>
+				<p class="quiet"><%= comment.date_posted.strftime("%B #{comment.date_posted.day.ordinalize}, %Y") %></p>
+			</div>
+			<div class="span-16 last">
+				<p><%= comment.comment.gsub(/\n/,'<br />') %></p>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<div class="span-24 even add-comment no-print" id="add-comment">
+	<div class="span-7 prepend-1 author">
+		<p class="loud" style="font-weight:bold; margin-bottom:0;">Add a Comment </p>
+		<p class="quiet"><%= Time.now.strftime("%B #{Time.now.day.ordinalize}, %Y") %></p>
+	</div>
+	<div class="span-16 last " id="comment-form">
+	
+	<% remote_form_for :ticket_comment, :success => "addComment(request.responseText);", :url => {:controller => "ticket_comment", :action => "create"} do |commentform| -%>
+		
+		<%= commentform.text_area :comment, :class => 'span-16', :rows => 4 %>
+		
+		<%= commentform.hidden_field :ticket_id, :value => params[:id] %>
+		<%= commentform.hidden_field :person_id, :value => @person.id %>
+		<%= commentform.hidden_field :date_posted, :value => Time.now.strftime('%Y-%m-%d %H:%M:%S') %>
+		
+		<div class="span-4 last" style="margin-bottom:1.5em;">
+			<%= submit_tag "Add Comment" %>
+		</div>
+			
+	<% end -%>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function addTag(response){
+		$('tags').innerHTML = $('tags').innerHTML + response;
+		$('tag-form').hide();
+	}
+	function addComment(response){
+		$('comments').innerHTML = $('comments').innerHTML + response;
+		$('ticket_comment_comment').value = '';
+	}
+	function updateAssignment(response){
+		$('assigned-to').innerHTML = response;
+		$('update-assignment').hide();
+	}
+</script> 

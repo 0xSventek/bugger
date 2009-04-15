@@ -1,0 +1,75 @@
+
+<% if flash[:message] %>
+	<div class="span-20 push-2 notice">
+		<%= flash[:message] %>
+	</div>
+<% end %>
+
+<% if flash[:error] %>
+	<div class="span-20 push-2 error">
+		<%= flash[:error] %>
+	</div>
+<% end %> 
+
+<div id="create-user" class="span-20 push-2">
+	
+	<h2 class="prepend-1">New User</h2>
+	
+	<%= form_tag :action => 'create' %>
+		
+		<fieldset>
+			<legend>Credentials</legend>
+			
+			<div class="span-18 push-1">
+				<label for="username">Choose a Username:</label>
+				<%= text_field "user", "username", :class => 'span-6', :onchange => "$('person_username').value = this.value;" %>
+			</div>
+			
+			<div class="span-18 push-1">
+				<div class="span-6">
+					<label for="password">Choose a Password you'll remember</label>
+					<%= password_field "user", "password", :class => 'span-6' %>
+				</div>
+				
+				<div class="span-6">
+					<label for="password">Re-Type the password you just chose.</label>
+					<%= password_field "user", "password_confirmation", :class => 'span-6' %>
+				</div>
+			</div>
+			
+		</fieldset>
+		
+		<fieldset>
+			<legend>Demographic</legend>	
+			
+			<div class="span-18 push-1">
+				
+				<div class="span-4">
+					<label for="first_name">First:</label>
+					<%= text_field "person", "first_name", :class => 'span-4' %>
+				</div>
+				
+				<div class="span-14 last">
+					<label for="last_name">Last:</label>
+					<%= text_field "person", "last_name", :class => 'span-8' %>
+				</div>
+				
+			</div>
+			
+			<div class="span-18 push-1">
+				<label for="email">Email Address:</label>
+				<%= text_field "person", "email", :class => 'span-12' %>
+			</div>
+			
+			<input type="hidden" value="" id="person_username" name="person[username]" />
+			
+		</fieldset>
+		
+		<div class="span-18 push-1">
+			<%= submit_tag "Create User" %> or <%= link_to "Cancel", :action => 'login' %>
+		</div>
+		
+	<%= end_form_tag %>
+	
+</div>
+

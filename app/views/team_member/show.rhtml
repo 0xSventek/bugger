@@ -1,0 +1,7 @@
+<div class="tm-container" id="tm-<%= "#{@team_member.person.id}" %>" onmouseover="$('remove-<%= "#{@team_member.person.id}" %>').show()" onmouseout="$('remove-<%= "#{@team_member.person.id}" %>').hide()">
+	<div id="remove-<%= "#{@team_member.person.id}" %>" class="trash" style="display:none;">
+		<%= link_to_remote image_tag "trash.gif", :url => {:controller => 'team_member', :action => 'destroy',  :id => @team_member.id }, :success => "kill@team_member(#{@team_member.person.id});"  %>
+	</div>
+	<p class="team-member-name"><%= "#{@team_member.person.first_name.capitalize} #{@team_member.person.last_name.capitalize}"%></p>
+	<p class="team-member-role"><%= @team_member.role.capitalize %></p>
+</div>

@@ -1,0 +1,32 @@
+<!-- Find me in app/views/overview/index.rhtml -->
+
+<h2>Welcome. We hope you stick around a bit.</h2>
+
+<table id="project-overview">
+
+	<thead>
+		<tr>
+			<th>Project</th><th>Status</th><th>Tickets</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @projects.each do |project| %>
+			<tr class="<%= cycle("odd", "even") %>" >
+				<td>
+					<p class="loud" style="font-weight:bold;"><%= link_to project.name , :controller => "project", :action => "show", :id => project.id %></p>
+					<p class="quiet small">Founded <%= project.date_founded.strftime("%B #{project.date_founded.day.ordinalize}, %Y") %></p>
+				</td>
+				<td style="text-transform:capitalize;">
+					<p class="loud" style="font-weight:bold;"><%= project.project_status.status %></p>
+					<p class="quiet small">Since <%= project.status_date.strftime("%B #{project.status_date.day.ordinalize}, %Y") %></p>
+				</td>
+				<td><%= project.tickets.count %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<td colspan="3"><%= link_to "+ Add another project", :controller => "project", :action => "new" %></td>
+		</tr>
+	</tbody>
+
+</table>

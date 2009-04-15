@@ -1,0 +1,7 @@
+---
+ticket_category_1:
+  id: "1"
+  category: "Bug"
+ticket_category_2:
+  id: "2"
+  category: "Feature Request"

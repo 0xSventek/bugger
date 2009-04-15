@@ -1,0 +1,31 @@
+<h2 class="">New Project</h2>
+	
+<div class="span-20 push-2">
+
+	<%= form_tag :action => 'create' %>
+
+		<fieldset>
+			<legend>Project</legend>		
+			<div class="span-18 push-1">
+				<label for="username">Name this project</label>
+				<%= text_field "project", "name", :class => 'span-6' %>
+			</div>
+			
+			<div class="span-18 push-1">
+				<label for="project_description">Description:</label>
+				<%= text_area "project", "description", :class => 'span-17' %>
+				<p class="quiet small">4000 characters maximum <em>(It's more than you think!)</em></p>
+			</div>
+		</fieldset>
+		
+		<input type="hidden" value="<%= Time.now.strftime('%Y-%m-%d %H:%M:%S') %>" id="project_" name="project[date_founded]" />
+		<input type="hidden" value="1" id="project_" name="project[project_status_id]" />
+		<input type="hidden" value="<%= Time.now.strftime('%Y-%m-%d %H:%M:%S') %>" id="project_" name="project[status_date]" />	
+		
+		<div class="span-18">
+			<%= submit_tag "Create Project" %> or <%= link_to "Cancel", :controller => 'overview' %>
+		</div>
+		
+	<%= end_form_tag %>
+	
+</div>

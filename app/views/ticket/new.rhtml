@@ -1,0 +1,118 @@
+
+<h2 class="">New Ticket for <%= Project.find(params[:id]).name %></h2>
+	
+<div class="span-20 push-2">
+
+	<%= form_tag :action => 'create' %>
+
+		<fieldset>
+			<legend>This ticket is a</legend>		
+			<div class="span-18 push-1">
+				<label for="ticket_ticket_category_id_1"><%= radio_button "ticket", "ticket_category_id", "1", :checked => "checked" %>Bug</label>
+				<label for="ticket_ticket_category_id_2"><%= radio_button "ticket", "ticket_category_id", "2" %>Feature Request</label>
+			</div>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Description</legend>	
+			<div class="span-18 push-1">
+				<label for="ticket_description">Be as specific as possible in your ticket description:</label>
+				<%= text_area "ticket", "description", :class => 'span-17' %>
+				<p class="quiet small">4000 characters maximum <em>(It's more than you think!)</em></p>
+			</div>
+		</fieldset>
+		
+		<fieldset>
+		<legend>Priority</legend>	
+			<p><strong>Slide the grip to the level of urgency</strong></p>
+			<div id="slider" class="span-11">
+				<div id="slider-track" style="">
+					<div id="slider-handle" style=""></div>
+				</div>
+			</div>
+			<div class="span-7">
+				<p id="slider-level" class="priority-normal">Normal</p>
+			</div>		
+			<input type="hidden" value="4" id="ticket_priority" name="ticket[priority]" />		
+		</fieldset>
+		
+		<div class="span-18">
+			<%= submit_tag "Create Ticket" %> or <%= link_to "Cancel", :controller => 'project', :action => 'show', :id => params[:id] %>
+		</div>
+		
+		<input type="hidden" value="<%= params[:id]%>" id="ticket_project_id" name="ticket[project_id]" />
+		<input type="hidden" value="<%= @user.username %>" id="ticket_submitted_by" name="ticket[submitted_by]" />
+		<input type="hidden" value="<%= Time.now.strftime('%Y-%m-%d %H:%M:%S') %>" id="ticket_date_submitted" name="ticket[date_submitted]" />
+		
+	<%= end_form_tag %>
+	
+</div>
+
+
+<script type="text/javascript" language="javascript">
+			// <![CDATA[
+			
+				
+				// horizontal slider control with preset values
+				var priority_labels = ['annoyance', 'minor','low','normal','high','major','critical']
+				 slider = new Control.Slider('slider-handle', 'slider-track', {
+					range: $R(1, 7),
+					values: [1, 2, 3, 4, 5, 6, 7],
+					sliderValue: 4, // won't work if set to 0 due to a bug(?) in script.aculo.us
+					onSlide: function(v){ $('slider-level').innerHTML = priority_labels[v-1]; $('slider-level').className = 'priority-' + priority_labels[v-1]; $('ticket_priority').value = v;},
+					onChange: function(v){ $('slider-level').innerHTML = priority_labels[v-1]; $('slider-level').className = 'priority-' + priority_labels[v-1]; $('ticket_priority').value = v;}
+				});
+				
+				//-----------------
+				
+				// mouse wheel code from http://adomas.org/javascript-mouse-wheel/
+				function handle(delta) {
+					slider.setValueBy(delta);
+				};
+	
+					
+				/** Event handler for mouse wheel event. */
+				function wheel(event){
+					var delta = 0;
+					if (!event) /* For IE. */
+						event = window.event;
+					if (event.wheelDelta) { /* IE/Opera. */
+						delta = event.wheelDelta/120;
+						/** In Opera 9, delta differs in sign as compared to IE. */
+						if (window.opera)
+							delta = -delta;
+					} else if (event.detail) { /** Mozilla case. */
+						/** In Mozilla, sign of delta is different than in IE.
+						* Also, delta is multiple of 3.
+						*/
+						delta = -event.detail/3;
+					}
+			
+					/** If delta is nonzero, handle it.
+					* Basically, delta is now positive if wheel was scrolled up,
+					* and negative, if wheel was scrolled down.
+					*/
+					if (delta)
+						handle(delta);
+			
+					/** Prevent default actions caused by mouse wheel.
+					* That might be ugly, but we handle scrolls somehow
+					* anyway, so don't bother here..
+					*/
+					if (event.preventDefault)
+						event.preventDefault();
+					
+					event.returnValue = false;
+				}
+	
+				// mozilla
+				Event.observe('slider-track', 'DOMMouseScroll', wheel);
+				
+				// IE/Opera
+				Event.observe('slider-track', 'mousewheel', wheel);
+
+				
+				//-----------------
+				
+			// ]]>
+		</script>

@@ -1,0 +1,30 @@
+
+<!-- Find me in app/views/user/login.rhtml -->
+  
+<div id="login" class="span-12 push-6">
+	<h2 class="span-11 last push-1 loud">Log into Bugger.</h2>
+	<%= form_tag :action => 'process_login' %>
+	
+		<div class="span-8 push-2">
+			<label for="user_username">Username</label>
+			<%= text_field "user", "username" %>
+		</div>
+		
+		<div class="span-8 push-2">
+			<label for="user_password">Password</label>
+			<%= password_field "user", "password" %>
+		</div>
+		
+		<div class="span-8 push-2">
+			<%= submit_tag "Login", :disable_with => "Login" %>
+		</div>
+		
+		<hr />
+		
+		<div class="span-10 push-2 small">
+			<%= link_to "Register. It's super easy!", :action => 'new' %>
+		</div>
+		
+		
+	<%= end_form_tag %>
+</div>

@@ -1,0 +1,103 @@
+team_member_01:
+  person_id: "1001"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "1111"
+team_member_02:
+  person_id: "1002"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "1111"
+team_member_03:
+  person_id: "1003"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "1111"
+team_member_04:
+  person_id: "1004"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "1111"
+team_member_05:
+  person_id: "1012"
+  role: "Project Lead"
+  date_on: "2008-02-29"
+  project_id: "1111"
+  
+team_member_06:
+  person_id: "1005"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "2222"
+team_member_07:
+  person_id: "1006"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "2222"
+team_member_08:
+  person_id: "1007"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "2222"
+team_member_09:
+  person_id: "1008"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "2222"
+team_member_10:
+  person_id: "1012"
+  role: "Project Lead"
+  date_on: "2008-02-29"
+  project_id: "2222"
+  
+team_member_11:
+  person_id: "1006"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "3333"
+team_member_12:
+  person_id: "1007"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "3333"
+team_member_13:
+  person_id: "1008"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "3333"
+team_member_14:
+  person_id: "1009"
+  role: "Developer"
+  date_on: "2008-02-29"
+  project_id: "3333"
+team_member_15:
+  person_id: "1012"
+  role: "Project Lead"
+  date_on: "2008-02-29"
+  project_id: "3333"
+  
+team_member_16:
+  person_id: "1010"
+  role: "Developer"
+  date_on: "2004-02-29"
+  project_id: "4444"
+team_member_17:
+  person_id: "1011"
+  role: "Developer"
+  date_on: "2004-02-29"
+  project_id: "4444"
+team_member_18:
+  person_id: "1001"
+  role: "Developer"
+  date_on: "2004-02-29"
+  project_id: "4444"
+team_member_19:
+  person_id: "1002"
+  role: "Developer"
+  date_on: "2004-02-29"
+  project_id: "4444"
+team_member_20:
+  person_id: "1012"
+  role: "Project Lead"
+  date_on: "2004-02-29"
+  project_id: "4444"

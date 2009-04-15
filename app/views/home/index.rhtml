@@ -1,0 +1,38 @@
+<div class="span-24">
+	<h1 style="font-size:4.0em; font-weight:bold; letter-spacing:-2px; padding:0.5em 0;">Bugger <span class="quiet">: :</span> Super Easy Issue Tracking</h1>
+</div>
+
+<div class="span-24">
+	<div class="span-12">
+		<h1 style="letter-spacing:-1px;">Hi, Welcome to Bugger</h1>
+		<p class="large">Isssue tracking made super easy by Eric Heidelmark with the help of Ruby on Rails and MySQL. Bugger is currently tracking <span class="highlight"><%= @ticket_count %></span> bugs, features, and upgrades. Think your spreadsheet can do that?</p>
+	</div>
+	
+	<div id="login" class="span-11 last">
+		<h2 class="span-11 last push-1 loud">Login</h2>
+		<%= form_tag :controller => 'user', :action => 'process_login' %>
+		
+			<div class="span-8 push-2">
+				<label for="user_username">Username</label>
+				<%= text_field "user", "username" %>
+			</div>
+			
+			<div class="span-8 push-2">
+				<label for="user_password">Password</label>
+				<%= password_field "user", "password" %>
+			</div>
+			
+			<div class="span-8 push-2">
+				<%= submit_tag "Login" %>
+			</div>
+			
+			<hr />
+			
+			<div class="span-10 push-2 small">
+				<%= link_to "Register. It's super easy!", :controller => 'user', :action => 'new' %>
+			</div>
+			
+			
+		<%= end_form_tag %>
+	</div>	
+</div>

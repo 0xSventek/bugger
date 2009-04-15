@@ -1,0 +1,17 @@
+<% if flash[:notice] %>
+	<div class="span-18 push-3 notice" id="flash">
+		<div class="span-16"><%= flash[:notice] %></div><div class="span-2 last" style="cursor:pointer;" onclick="$('flash').hide();">close</div>
+	</div>
+<% end %>
+
+<% if flash[:error] %>
+	<div class="span-18 push-3 error" id="flash">
+		<div class="span-16"><%= flash[:error] %></div><div class="span-2 last" style="cursor:pointer;" onclick="$('flash').hide();">close</div>
+	</div>
+<% end %> 
+
+<% if flash[:message] %>
+	<div class="span-18 push-3 success" id="flash">
+		<div class="span-16"><%= flash[:message] %></div><div class="span-2 last" style="cursor:pointer;" onclick="$('flash').hide();">close</div>
+	</div>
+<% end %> 

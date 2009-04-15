@@ -1,0 +1,13 @@
+---
+ticket_resolution_1:
+  id: "1"
+  resolution:  "Fixed and implemented"
+ticket_resolution_2:
+  id: "2"
+  resolution:  "Removed from the system"
+ticket_resolution_3:
+  id: "3"
+  resolution:  "Not implemented"
+ticket_resolution_4:
+  id: "4"
+  resolution:  "Possible future implementation"

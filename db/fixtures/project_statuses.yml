@@ -1,0 +1,22 @@
+---
+project_status_1:
+  id: "1"
+  status: "development"
+project_status_2:
+  id: "2"
+  status: "test"
+project_status_3:
+  id: "3"
+  status: "alpha release"
+project_status_4:
+  id: "4"
+  status: "beta release"
+project_status_5:
+  id: "5"
+  status: "full release"
+project_status_6:
+  id: "6"
+  status: "no longer supported"
+project_status_7:
+  id: "7"
+  status: "cut"
