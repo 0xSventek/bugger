@@ -67,7 +67,7 @@ If, at the conclusion of your experimenting with Bugger, you would like to remov
 	$ rake db:drop
 	
 	* * WARNING * *
-	This will drop the entire database, so only do this when you're sure you're done.  
+	This will drop all of the bugger databases, so only do this when you're sure you're done.  
 	
 	
 ------------------------------------------------
