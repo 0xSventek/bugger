@@ -1,7 +1,7 @@
 ------------------------------------------------
-README_FOR_APP
+BUGGER README
 
-LAST MODIFIED:			4-9-2009
+LAST MODIFIED:			4-15-2009
 
 CREATED BY:					Eric Heidelmark
 										hmark6@gmail.com
@@ -13,38 +13,14 @@ ACKNOWLEDGEMENTS:		Blueprint CSS framework (http://www.blueprintcss.org/)
 										script.aculo.us JS framework (http://script.aculo.us)
 										Rails Recipes (http://www.pragprog.com/titles/fr_rr/)
 										Stock Names (http://stocknames.info/) for the silly names!
-
-
 ------------------------------------------------
-Getting MySQL and Rails
+ABOUT BUGGER  
+ 
+Bugger is a simple Bug Tracking Application. See /doc for a long winded version of the documentation along with other goodies about this app 
 
-'$' indicates a command that should be run from a command line shell.
-
-If you don't have Ruby, Rails, RubyGems, and MySQL installed, use one of the following to set up your development environment:
-
-Windows : 'Instant Rails' http://instantrails.rubyforge.org/wiki/wiki.pl.
-Mac     : 'Locomotive' http://locomotive.raaum.org/
-Linux   : You can use your distribution's package manager to install the
-          programs you need. If you use Ubuntu Linux, the following link should
-          help: https://help.ubuntu.com/community/RubyOnRails
-
-If you'd rather install things manually, there are instructions here:
-
-  http://www.rubyonrails.com/down
-  
-  This application was built on Rails 1.2.6
-
-You can get MySQL from:
-
-  http://dev.mysql.com/downloads/mysql/5.0.html
-
-Everyone needs to install rake with:
-
-  $ sudo gem install rake
-  
   
 ------------------------------------------------
-Getting Started
+GETTING STARTED
 
 '$' indicates a command that should be run from a command line shell.
 
@@ -87,7 +63,7 @@ If, at the conclusion of your experimenting with Bugger, you would like to remov
 	
 	
 ------------------------------------------------
-Notes about Bugger 
+NOTES
 
 Clearly there are holes in the app that I'd like to take care of. Little ones like, Password Change; Big ones like, Ticket Resolution. It's a work in progress. 
 
