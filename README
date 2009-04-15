@@ -13,10 +13,18 @@ ACKNOWLEDGEMENTS:		Blueprint CSS framework (http://www.blueprintcss.org/)
 										script.aculo.us JS framework (http://script.aculo.us)
 										Rails Recipes (http://www.pragprog.com/titles/fr_rr/)
 										Stock Names (http://stocknames.info/) for the silly names!
+
+
 ------------------------------------------------
 ABOUT BUGGER  
  
-Bugger is a simple Bug Tracking Application. See /doc for a long winded version of the documentation along with other goodies about this app 
+Bugger is a simple Bug Tracking Application written with Ruby on Rails on MySQL. See /doc for a long winded version of the documentation along with other goodies about this app. 
+
+	WHAT YOU'LL NEED TO GET BUGGER RUNNING:
+	
+	* Ruby 1.8.6, Rails 1.2.6
+	* MySQL 5
+	* A web browser
 
   
 ------------------------------------------------
