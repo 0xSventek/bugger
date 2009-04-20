@@ -8,4 +8,10 @@ class UserTest < Test::Unit::TestCase
     assert true
   end
   
+  def test_unique_username
+  	@user_a = users(:user_01)
+  	@user_b = users(:user_02)
+  	
+  end
+  
 end
